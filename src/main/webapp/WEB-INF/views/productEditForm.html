@@ -133,6 +133,10 @@
         </div>
 
     </form>
-
+    <!-- 실습 증적 footer -->
+    <footer style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-top: 2px solid #4a90d9; text-align: center; color: #555; font-size: 0.9em;">
+        <p th:text="${'실습 수행 일시: ' + #temporals.format(#temporals.createNow(), 'yyyy년 MM월 dd일 (E) a hh:mm:ss')}">실습 수행 일시</p>
+        <p>학번: 2171183 │ 성명: 이승비 </p>
+    </footer>
 </body>
 </html>
