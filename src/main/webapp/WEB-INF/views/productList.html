@@ -47,7 +47,17 @@
     <div class="alert-success" th:if="${successMessage}">
         <span th:text="${successMessage}">성공 메시지</span>
     </div>
-
+    <!-- 검색 폼 -->
+    <form th:action="@{/products}" method="get" style="margin-bottom: 16px;">
+        <input type="text" name="keyword" th:value="${keyword}" placeholder="상품명 검색" style="padding: 8px;"/>
+        <select name="categoryId" style="padding: 8px;">
+            <option value="">-- 전체 카테고리 --</option>
+            <option th:each="cat : ${categories}"
+                    th:value="${cat.id}" th:text="${cat.name}"
+                    th:selected="${cat.id == categoryId}"></option>
+        </select>
+        <button type="submit" style="padding: 8px 16px;">검색</button>
+    </form>
     <a class="btn" th:href="@{/products/create}">+ 새 상품 등록</a>
 
     <div class="empty-msg" th:if="${#lists.isEmpty(products)}">
