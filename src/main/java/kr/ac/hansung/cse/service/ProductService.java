@@ -125,7 +125,15 @@ public class ProductService {
         }
         return productRepository.update(product);
     }
+    // 이름 검색
+    public List<Product> searchByName(String keyword) {
+        return productRepository.findByNameContaining(keyword);
+    }
 
+    // 카테고리 필터
+    public List<Product> searchByCategory(Long categoryId) {
+        return productRepository.findByCategoryId(categoryId);
+    }
     /**
      * 상품 삭제
      */

@@ -131,4 +131,21 @@ public class ProductRepository {
             entityManager.remove(product);
         }
     }
+    // 이름 검색: JPQL LIKE로 키워드 포함 여부 검사
+    public List<Product> findByNameContaining(String keyword) {
+        return entityManager.createQuery(
+                        "SELECT p FROM Product p LEFT JOIN FETCH p.category WHERE p.name LIKE :keyword ORDER BY p.id",
+                        Product.class)
+                .setParameter("keyword", "%" + keyword + "%")
+                .getResultList();
+    }
+
+    // 카테고리 필터: category.id로 조회
+    public List<Product> findByCategoryId(Long categoryId) {
+        return entityManager.createQuery(
+                        "SELECT p FROM Product p LEFT JOIN FETCH p.category WHERE p.category.id = :cid ORDER BY p.id",
+                        Product.class)
+                .setParameter("cid", categoryId)
+                .getResultList();
+    }
 }
